@@ -71,20 +71,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Column(
       children: [
         Container(
-          width: 85,
-          height: 85,
-          decoration: boxDecorationWithRoundedCorners(boxShape: BoxShape.circle, backgroundColor: primaryColor),
-          child: Image.asset(profile, height: 45, width: 45, color: white),
+          margin: EdgeInsets.fromLTRB(0, 52,0, 0),
+          child: Image(
+            image:AssetImage('assets/images/Sign_inScreen_topImage.png'),
+            width: 142,
+            height: 142,
+          ),
         ),
         16.height,
-        Text(context.translate.lblsignuptitle, style: boldTextStyle(size: 22)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: Row(
+                children: <Widget>[
+                  Text( 'Create',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,),),
+                  6.width,
+                  Text( 'Account',style: TextStyle(color:primaryColor,fontSize: 22,fontWeight: FontWeight.bold,),),
+                ],
+
+              ),
+            ),
+          ],
+        ),
         16.height,
         Text(
           context.translate.lblsignupsubtitle,
           style: secondaryTextStyle(size: 16),
           textAlign: TextAlign.center,
         ).paddingSymmetric(horizontal: 32),
-        32.height,
+        36.height,
       ],
     );
   }
@@ -92,139 +108,207 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget _buildFormWidget() {
     return Column(
       children: [
-        AppTextField(
-          textFieldType: TextFieldType.NAME,
-          controller: fNameCont,
-          focus: fNameFocus,
-          nextFocus: lNameFocus,
-          errorThisFieldRequired: context.translate.hintRequired,
-          decoration: inputDecoration(context, hint: context.translate.hintFirstNm),
-          suffix: profile.iconImage(size: 10).paddingAll(14),
+        Container(
+
+          height: 48,
+          width: 326,
+          child: AppTextField(
+            textFieldType: TextFieldType.NAME,
+            controller: fNameCont,
+            focus: fNameFocus,
+            nextFocus: lNameFocus,
+            errorThisFieldRequired: context.translate.hintRequired,
+            decoration: inputDecoration(context, hint: context.translate.hintFirstNm),
+            suffix: Image(
+              image: AssetImage('assets/icons/frame.png'),
+              width: 10,
+              height: 10,
+              color: Colors.black,
+            ).paddingAll(14),
+          ),
         ),
         16.height,
-        AppTextField(
-          textFieldType: TextFieldType.NAME,
-          controller: lNameCont,
-          focus: lNameFocus,
-          nextFocus: userNameFocus,
-          errorThisFieldRequired: context.translate.hintRequired,
-          decoration: inputDecoration(context, hint: context.translate.hintLastNm),
-          suffix: profile.iconImage(size: 10).paddingAll(14),
+        Container(
+          height: 48,
+          width: 326,
+          child: AppTextField(
+            textFieldType: TextFieldType.NAME,
+            controller: lNameCont,
+            focus: lNameFocus,
+            nextFocus: userNameFocus,
+            errorThisFieldRequired: context.translate.hintRequired,
+            decoration: inputDecoration(context, hint: context.translate.hintLastNm),
+            suffix: Image(
+              image: AssetImage('assets/icons/frame.png'),
+              width: 10,
+              height: 10,
+              color: Colors.black,
+            ).paddingAll(14),
+          ),
         ),
         16.height,
-        AppTextField(
-          textFieldType: TextFieldType.USERNAME,
-          controller: userNameCont,
-          focus: userNameFocus,
-          nextFocus: emailFocus,
-          errorThisFieldRequired: context.translate.hintRequired,
-          decoration: inputDecoration(context, hint: context.translate.hintUserNm),
-          suffix: profile.iconImage(size: 10).paddingAll(14),
+        Container(
+          height: 48,
+          width: 326,
+          child: AppTextField(
+            textFieldType: TextFieldType.USERNAME,
+            controller: userNameCont,
+            focus: userNameFocus,
+            nextFocus: emailFocus,
+            errorThisFieldRequired: context.translate.hintRequired,
+            decoration: inputDecoration(context, hint: context.translate.hintUserNm),
+            suffix: Image(
+              image: AssetImage('assets/icons/frame.png'),
+              width: 10,
+              height: 10,
+              color: Colors.black,
+            ).paddingAll(14),
+          ),
         ),
         16.height,
-        AppTextField(
-          textFieldType: TextFieldType.EMAIL,
-          controller: emailCont,
-          focus: emailFocus,
-          nextFocus: mobileFocus,
-          errorThisFieldRequired: context.translate.hintRequired,
-          decoration: inputDecoration(context, hint: context.translate.hintEmailAddress),
-          suffix: ic_message.iconImage(size: 10).paddingAll(14),
+        Container(
+          height: 48,
+          width: 326,
+          child: AppTextField(
+            textFieldType: TextFieldType.EMAIL,
+            controller: emailCont,
+            focus: emailFocus,
+            nextFocus: mobileFocus,
+            errorThisFieldRequired: context.translate.hintRequired,
+            decoration: inputDecoration(context, hint: context.translate.hintEmailAddress),
+            suffix: Icon(
+              Icons.email,
+              size: 15,
+              color: Colors.black,
+            ).paddingAll(14),
+          ),
         ),
         16.height,
-        AppTextField(
-          textFieldType: TextFieldType.PHONE,
-          controller: mobileCont,
-          focus: mobileFocus,
-          maxLength: 13,
-          buildCounter: (_, {required int currentLength, required bool isFocused, required int? maxLength}) {
-            return Offstage();
-          },
-          nextFocus: designationFocus,
-          errorThisFieldRequired: context.translate.hintRequired,
-          decoration: inputDecoration(context, hint: context.translate.hintContactNumber),
-          suffix: calling.iconImage(size: 10).paddingAll(14),
-          validator: (mobileCont) {
-            if (mobileCont!.isEmpty) return context.translate.lblPleaseEnterMobileNumber;
-            if (!mobileCont.trim().contains('-')) return '"-" required after country code';
-            return null;
-          },
+        Container(
+          height: 48,
+          width: 326,
+          child: AppTextField(
+            textFieldType: TextFieldType.PHONE,
+            controller: mobileCont,
+            focus: mobileFocus,
+            maxLength: 13,
+            buildCounter: (_, {required int currentLength, required bool isFocused, required int? maxLength}) {
+              return Offstage();
+            },
+            nextFocus: designationFocus,
+            errorThisFieldRequired: context.translate.hintRequired,
+            decoration: inputDecoration(context, hint: context.translate.hintContactNumber),
+            suffix:  Icon(
+              Icons.phone_in_talk,
+              size: 16,
+              color: Colors.black,
+            ).paddingAll(14),
+            validator: (mobileCont) {
+              if (mobileCont!.isEmpty) return context.translate.lblPleaseEnterMobileNumber;
+              if (!mobileCont.trim().contains('-')) return '"-" required after country code';
+              return null;
+            },
+          ),
         ),
         12.height,
-        Align(
-          alignment: Alignment.centerRight,
-          child: mobileNumberInfoWidget(context),
+        Container(
+          width: 326,
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: mobileNumberInfoWidget(context),
+          ),
         ),
         16.height,
-        AppTextField(
-          textFieldType: TextFieldType.USERNAME,
-          controller: designationCont,
-          isValidationRequired: false,
-          focus: designationFocus,
-          nextFocus: passwordFocus,
-          decoration: inputDecoration(context, hint: context.translate.lblDesignation),
-          suffix: profile.iconImage(size: 10).paddingAll(14),
+        Container(
+          height: 48,
+          width: 326,
+          child: AppTextField(
+            textFieldType: TextFieldType.USERNAME,
+            controller: designationCont,
+            isValidationRequired: false,
+            focus: designationFocus,
+            nextFocus: passwordFocus,
+            decoration: inputDecoration(context, hint: context.translate.lblDesignation),
+            suffix: profile.iconImage(size: 10).paddingAll(14),
+          ),
         ),
         16.height,
-        DropdownButtonFormField<String>(
-          items: [
-            DropdownMenuItem(
-              child: Text(context.translate.provider, style: primaryTextStyle()),
-              value: USER_TYPE_PROVIDER,
-            ),
-            DropdownMenuItem(
-              child: Text(context.translate.handyman, style: primaryTextStyle()),
-              value: USER_TYPE_HANDYMAN,
-            ),
-          ],
-          focusNode: userTypeFocus,
-          dropdownColor: context.cardColor,
-          decoration: inputDecoration(context, hint: context.translate.lblUserType),
-          value: selectedUserTypeValue,
-          validator: (value) {
-            if (value == null) return errorThisFieldRequired;
-            return null;
-          },
-          onChanged: (c) {
-            hideKeyboard(context);
-            selectedUserTypeValue = c.validate();
-            LiveStream().emit(SELECT_USER_TYPE, selectedUserTypeValue);
-          },
+        Container(
+          height: 48,
+          width: 326,
+          child: DropdownButtonFormField<String>(
+            items: [
+              DropdownMenuItem(
+                child: Text(context.translate.provider, style: primaryTextStyle()),
+                value: USER_TYPE_PROVIDER,
+              ),
+              DropdownMenuItem(
+                child: Text(context.translate.handyman, style: primaryTextStyle()),
+                value: USER_TYPE_HANDYMAN,
+              ),
+            ],
+            focusNode: userTypeFocus,
+            dropdownColor: context.cardColor,
+            decoration: inputDecoration(context, hint: context.translate.lblUserType),
+            value: selectedUserTypeValue,
+            validator: (value) {
+              if (value == null) return errorThisFieldRequired;
+              return null;
+            },
+            onChanged: (c) {
+              hideKeyboard(context);
+              selectedUserTypeValue = c.validate();
+              LiveStream().emit(SELECT_USER_TYPE, selectedUserTypeValue);
+            },
+          ),
         ),
         16.height,
-        DropdownUserTypeComponent(
-          isValidate: true,
-          userType: selectedUserTypeValue,
-          onValueChanged: (UserTypeData value) {
-            selectedUserTypeData = value;
-            setState(() {});
-          },
+        Container(
+          height: 48,
+          width: 326,
+          child: DropdownUserTypeComponent(
+            isValidate: true,
+            userType: selectedUserTypeValue,
+            onValueChanged: (UserTypeData value) {
+              selectedUserTypeData = value;
+              setState(() {});
+            },
+          ),
         ),
         16.height,
-        AppTextField(
-          textFieldType: TextFieldType.PASSWORD,
-          controller: passwordCont,
-          focus: passwordFocus,
-          suffixPasswordVisibleWidget: ic_show.iconImage(size: 10).paddingAll(14),
-          suffixPasswordInvisibleWidget: ic_hide.iconImage(size: 10).paddingAll(14),
-          errorThisFieldRequired: context.translate.hintRequired,
-          decoration: inputDecoration(context, hint: context.translate.hintPassword),
-          onFieldSubmitted: (s) {
-            saveUser();
-          },
+        Container(
+          height: 48,
+          width: 326,
+          child: AppTextField(
+            textFieldType: TextFieldType.PASSWORD,
+            controller: passwordCont,
+            focus: passwordFocus,
+            suffixPasswordVisibleWidget: ic_show.iconImage(size: 10).paddingAll(14),
+            suffixPasswordInvisibleWidget: ic_hide.iconImage(size: 10).paddingAll(14),
+            errorThisFieldRequired: context.translate.hintRequired,
+            decoration: inputDecoration(context, hint: context.translate.hintPassword),
+            onFieldSubmitted: (s) {
+              saveUser();
+            },
+          ),
         ),
-        20.height,
-        _buildTcAcceptWidget(),
+        15.height,
+
+        Container(
+          width: 326,
+            child: _buildTcAcceptWidget()),
         8.height,
-        AppButton(
-          text: context.translate.lblsignup,
-          height: 40,
-          color: primaryColor,
-          textStyle: primaryTextStyle(color: white),
-          width: context.width() - context.navigationBarHeight,
-          onTap: () {
-            saveUser();
-          },
+        Container(
+          child: AppButton(
+            text: context.translate.lblsignup,
+            height: 40,
+            color: primaryColor,
+            textStyle: primaryTextStyle(color: white),
+            width: context.width() - context.navigationBarHeight,
+            onTap: () {
+              saveUser();
+            },
+          ),
         ),
       ],
     );

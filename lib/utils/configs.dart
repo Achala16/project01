@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const APP_NAME = 'Handyman Services';
 const DEFAULT_LANGUAGE = 'en';
 
-const primaryColor = Color(0xff00B480);
+const primaryColor = Color(0xff009CEB);
 //var appFontFamily = GoogleFonts.workSans().fontFamily;
 
 const DOMAIN_URL =

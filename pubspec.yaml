@@ -86,3 +86,11 @@ flutter:
     - assets/icons/
     - assets/lottie/
 
+fonts:
+  - family: Work_Sans
+    fonts:
+      - asset: Fonts/WorkSans-Italic-VariableFont_wght.ttf
+
+  - family: trueno
+    fonts:
+      - asset: Fonts/TruenoBd.otf

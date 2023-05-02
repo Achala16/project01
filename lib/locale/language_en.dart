@@ -518,7 +518,7 @@ class LanguageEn extends Languages {
   String toastSuccess = "Provider Document has been save successfully";
 
   @override
-  String lblSelectDoc = "Select Document";
+  String lblSelectDoc = "Select  Document";
 
   @override
   String lblAddDoc = "Add Documents";
@@ -567,7 +567,7 @@ class LanguageEn extends Languages {
   String lblloginsubtitle = "Welcome Back, You Have Been Missed For A Long Time";
 
   @override
-  String lblsignuptitle = "Hello User !";
+  String lblsignuptitle = "Create Account";
 
   @override
   String lblsignupsubtitle = "Create Your Account for Better Experience";

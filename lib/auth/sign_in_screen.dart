@@ -57,26 +57,35 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget _buildTopWidget() {
     return Column(
       children: [
-        24.height,
-        Image(
 
+        Container(
+          
+          margin: EdgeInsets.fromLTRB(0, 58,0, 0),
+          child: Image(
+            
+            image:AssetImage('assets/images/Sign_inScreen_topImage.png'),
+            width: 142,
+            height: 142,
 
-
-          image:AssetImage('assets/images/Sign_inScreen_topImage.png'),
-          width: 142,
-          height: 142,
-
+          ),
         ),
 
-        SizedBox(height: 20,),
-        Text(context.translate.lbllogintitle, style: boldTextStyle(size: 22)).center(),
+        28.height,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Hi', style: TextStyle(fontFamily:'trueno',color: Color(0xFF1C1F34),fontSize: 22,fontWeight: FontWeight.bold)).center(),
+            4.width,
+            Text('John!', style: TextStyle(fontFamily:'Work_Sans',color: primaryColor,fontSize: 22,fontWeight: FontWeight.bold)).center(),
+          ],
+        ),
         16.height,
         Text(
           context.translate.lblloginsubtitle,
           style: secondaryTextStyle(size: 16),
           textAlign: TextAlign.center,
         ).paddingSymmetric(horizontal: 32).center(),
-        64.height,
+       // 64.height,
       ],
     );
   }
@@ -85,80 +94,103 @@ class _SignInScreenState extends State<SignInScreen> {
     return AutofillGroup(
       onDisposeAction: AutofillContextAction.commit,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center, // align children to the center of the column
+
         children: [
-          AppTextField(
-            textFieldType: TextFieldType.EMAIL,
-            controller: emailCont,
-            focus: emailFocus,
-            nextFocus: passwordFocus,
-            errorThisFieldRequired: context.translate.hintRequired,
-            decoration: inputDecoration(context, hint: context.translate.hintEmailAddress),
-            suffix: ic_message.iconImage(size: 10).paddingAll(14),
-            autoFillHints: [AutofillHints.email],
+          SizedBox(height: 31,),
+          Container(
+            height: 48,
+            width: 326,
+            child: AppTextField(
+
+              textFieldType: TextFieldType.EMAIL,
+              controller: emailCont,
+              focus: emailFocus,
+              nextFocus: passwordFocus,
+              errorThisFieldRequired: context.translate.hintRequired,
+              decoration: inputDecoration(context, hint: context.translate.hintEmailAddress,prefixIcon:  Icon(Icons.email, color: Colors.black,size: 20,), ),
+              //suffix: ic_message.iconImage(size: 10).paddingAll(14),
+              autoFillHints: [AutofillHints.email],
+            ),
           ),
-          16.height,
-          AppTextField(
-            textFieldType: TextFieldType.PASSWORD,
-            controller: passwordCont,
-            focus: passwordFocus,
-            errorThisFieldRequired: context.translate.hintRequired,
-            suffixPasswordVisibleWidget: ic_show.iconImage(size: 10).paddingAll(14),
-            suffixPasswordInvisibleWidget: ic_hide.iconImage(size: 10).paddingAll(14),
-            errorMinimumPasswordLength: "${context.translate.errorPasswordLength} $passwordLengthGlobal",
-            decoration: inputDecoration(context, hint: context.translate.hintPassword),
-            autoFillHints: [AutofillHints.password],
-            onFieldSubmitted: (s) {
-              loginUsers();
-            },
+          24.height,
+          Container(
+            height: 48,
+            width: 326,
+
+            child: AppTextField(
+              textFieldType: TextFieldType.PASSWORD,
+              controller: passwordCont,
+              focus: passwordFocus,
+              errorThisFieldRequired: context.translate.hintRequired,
+              suffixPasswordVisibleWidget: ic_show.iconImage(size: 10).paddingAll(14),
+              suffixPasswordInvisibleWidget: ic_hide.iconImage(size: 10).paddingAll(14),
+              errorMinimumPasswordLength: "${context.translate.errorPasswordLength} $passwordLengthGlobal",
+              decoration: inputDecoration(context, hint: context.translate.hintPassword, prefixIcon: Image.asset('assets/icons/lock_ic.png',color: Colors.black,)),
+              autoFillHints: [AutofillHints.password],
+              onFieldSubmitted: (s) {
+                loginUsers();
+              },
+            ),
           ),
-          8.height,
+         // 16.height,
         ],
       ),
     );
   }
 
   Widget _buildForgotRememberWidget() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                2.width,
-                SelectedItemWidget(isSelected: isRemember).onTap(() async {
-                  await setValue(IS_REMEMBERED, isRemember);
-                  isRemember = !isRemember;
-                  setState(() {});
-                }),
-                TextButton(
-                  onPressed: () async {
+    return Container(
+      width: 326,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  4.width,
+                  SelectedItemWidget(isSelected: isRemember).onTap(() async {
                     await setValue(IS_REMEMBERED, isRemember);
                     isRemember = !isRemember;
                     setState(() {});
-                  },
-                  child: Text(context.translate.rememberMe, style: secondaryTextStyle()),
-                ),
-              ],
-            ),
-            TextButton(
-              child: Text(
-                context.translate.forgotPassword,
-                style: boldTextStyle(color: primaryColor, fontStyle: FontStyle.italic),
+                  }),
+
+                  TextButton(
+                    onPressed: () async {
+                      await setValue(IS_REMEMBERED, isRemember);
+                      isRemember = !isRemember;
+                      setState(() {});
+                    },
+                    child: Text(context.translate.rememberMe, style: TextStyle(color: Color(0xFF1F2224),fontFamily:'trueno' )),
+                  ),
+                ],
               ),
-              onPressed: () {
-                showInDialog(
-                  context,
-                  contentPadding: EdgeInsets.zero,
-                  dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
-                  builder: (_) => ForgotPasswordScreen(),
-                );
-              },
-            ).flexible()
-          ],
-        ),
-        32.height,
-      ],
+              TextButton(
+                child: Text(
+                  context.translate.forgotPassword,
+                  style: TextStyle(
+                      color: Color(0xFF009CEB),
+                      fontStyle: FontStyle.normal,
+                      fontSize: 12,
+                      fontFamily: 'trueno'
+                  ),
+
+                ),
+                onPressed: () {
+                  showInDialog(
+                    context,
+                    contentPadding: EdgeInsets.zero,
+                    dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
+                    builder: (_) => ForgotPasswordScreen(),
+                  );
+                },
+              ).flexible()
+            ],
+          ),
+          89.height,
+        ],
+      ),
     );
   }
 
@@ -166,20 +198,63 @@ class _SignInScreenState extends State<SignInScreen> {
     return Column(
       children: [
         AppButton(
-          text: context.translate.lblLogin,
+          text: (context.translate.lblLogin).toUpperCase(),
+          elevation: 0,
           height: 40,
           color: primaryColor,
-          textStyle: primaryTextStyle(color: white),
-          width: context.width() - context.navigationBarHeight,
+          textStyle: primaryTextStyle(color: white,fontFamily:'Work_Sans'),
+          width: 326,
           onTap: () {
             loginUsers();
           },
         ),
-        16.height,
+        168.height,
+        /*Text('Login With',
+          style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold),
+        ), */
+
+
+       /* Container(
+          height:48 ,
+          width: 326,
+          child: AppButton(
+
+            
+            color: Color(0xFFF6FAFC),
+            elevation: 0,
+
+            onTap: (){},
+            
+            child: Row(
+              
+              children: <Widget>[
+                
+                Image.asset('assets/google_icon.png'),
+                105.width,
+                Text('Google',style: TextStyle(fontSize: 14,color: Colors.black),)
+                
+                
+              ],
+              
+              
+              
+            ),
+
+          ),
+        ), */
+
+
+
+
+
+
+
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(context.translate.doNotHaveAccount, style: secondaryTextStyle()),
+            Text(context.translate.doNotHaveAccount, style: secondaryTextStyle(fontFamily: 'trueno',color:Color(0xFF1F2224)       )),
             TextButton(
               onPressed: () {
                 SignUpScreen().launch(context);
@@ -189,7 +264,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 style: boldTextStyle(
                   color: primaryColor,
                   decoration: TextDecoration.underline,
-                  fontStyle: FontStyle.italic,
+                  fontStyle: FontStyle.normal,
+                  fontFamily: 'trueno'
                 ),
               ),
             )
@@ -304,7 +380,7 @@ class _SignInScreenState extends State<SignInScreen> {
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(16),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     _buildTopWidget(),
                     _buildFormWidget(),
