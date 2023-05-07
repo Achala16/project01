@@ -20,7 +20,7 @@ class SelectedItemWidget extends StatelessWidget {
           boxDecorationDefault(
             color: isSelected ? primaryColor : Colors.white,
             border: Border.all(color: primaryColor),
-            shape: BoxShape.circle,
+            shape: BoxShape.rectangle,
           ),
       child: isSelected ? Icon(Icons.check, color: Colors.white, size: itemSize) : Offstage(),
     );

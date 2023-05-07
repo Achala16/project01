@@ -92,32 +92,48 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget _buildFormWidget() {
     return AutofillGroup(
+
       onDisposeAction: AutofillContextAction.commit,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center, // align children to the center of the column
 
         children: [
           SizedBox(height: 31,),
-          Container(
-            height: 48,
-            width: 326,
-            child: AppTextField(
+              Container(
+                width: 326,
 
-              textFieldType: TextFieldType.EMAIL,
-              controller: emailCont,
-              focus: emailFocus,
-              nextFocus: passwordFocus,
-              errorThisFieldRequired: context.translate.hintRequired,
-              decoration: inputDecoration(context, hint: context.translate.hintEmailAddress,prefixIcon:  Icon(Icons.email, color: Colors.black,size: 20,), ),
-              //suffix: ic_message.iconImage(size: 10).paddingAll(14),
-              autoFillHints: [AutofillHints.email],
-            ),
-          ),
+
+                child: AppTextField(
+
+                  textFieldType: TextFieldType.EMAIL,
+                  controller: emailCont,
+                  focus: emailFocus,
+                  nextFocus: passwordFocus,
+                  errorThisFieldRequired: context.translate.hintRequired,
+                  decoration: inputDecoration(context, hint: context.translate.hintEmailAddress,prefixIcon:  Icon(Icons.email, color: Colors.black,size: 20,), ),
+                  //suffix: ic_message.iconImage(size: 10).paddingAll(14),
+                  autoFillHints: [AutofillHints.email],
+                ),
+
+
+
+              ),
+
+
+
+
           24.height,
+          //Container(
+           // height: 48,
+            //width: 326,
           Container(
-            height: 48,
             width: 326,
-
+          child:Theme(
+            data: Theme.of(context).copyWith(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              focusColor: Colors.transparent,
+            ),
             child: AppTextField(
               textFieldType: TextFieldType.PASSWORD,
               controller: passwordCont,
@@ -126,35 +142,62 @@ class _SignInScreenState extends State<SignInScreen> {
               suffixPasswordVisibleWidget: ic_show.iconImage(size: 10).paddingAll(14),
               suffixPasswordInvisibleWidget: ic_hide.iconImage(size: 10).paddingAll(14),
               errorMinimumPasswordLength: "${context.translate.errorPasswordLength} $passwordLengthGlobal",
-              decoration: inputDecoration(context, hint: context.translate.hintPassword, prefixIcon: Image.asset('assets/icons/lock_ic.png',color: Colors.black,)),
+              decoration: inputDecoration(
+                context,
+                hint: context.translate.hintPassword,
+                prefixIcon: Image.asset('assets/icons/Lock_icon.png', color: Colors.black),
+              ),
               autoFillHints: [AutofillHints.password],
               onFieldSubmitted: (s) {
                 loginUsers();
               },
             ),
-          ),
+          )
+          )
+          //),
          // 16.height,
         ],
       ),
+
     );
   }
 
   Widget _buildForgotRememberWidget() {
     return Container(
       width: 326,
+
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  4.width,
-                  SelectedItemWidget(isSelected: isRemember).onTap(() async {
+
+                  Checkbox(
+
+                    value: isRemember,
+                    splashRadius: 0,
+                    activeColor: primaryColor,
+                    onChanged: (newValue) async {
+                      await setValue(IS_REMEMBERED, newValue);
+                      setState(() {
+                        isRemember = !isRemember;
+                      });
+                    },
+
+                  ),
+
+
+
+
+
+                  /*SelectedItemWidget(isSelected: isRemember).onTap(() async {
                     await setValue(IS_REMEMBERED, isRemember);
                     isRemember = !isRemember;
                     setState(() {});
-                  }),
+                  }),  */
 
                   TextButton(
                     onPressed: () async {
@@ -264,6 +307,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 style: boldTextStyle(
                   color: primaryColor,
                   decoration: TextDecoration.underline,
+                  decorationColor: primaryColor,
                   fontStyle: FontStyle.normal,
                   fontFamily: 'trueno'
                 ),
@@ -387,7 +431,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     _buildForgotRememberWidget(),
                     _buildButtonWidget(),
                     16.height,
-                    if (isIqonicProduct)
+                   /* if (isIqonicProduct)
                       UserDemoModeScreen(
                         onChanged: (email, password) {
                           if (email.isNotEmpty && password.isNotEmpty) {
@@ -398,7 +442,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             passwordCont.clear();
                           }
                         },
-                      ),
+                      ),  */
                   ],
                 ),
               ),
