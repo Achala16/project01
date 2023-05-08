@@ -245,7 +245,12 @@ class _SignInScreenState extends State<SignInScreen> {
           elevation: 0,
           height: 40,
           color: primaryColor,
-          textStyle: primaryTextStyle(color: white,fontFamily:'Work_Sans'),
+          textStyle: primaryTextStyle(
+              color: white,
+              fontFamily:'Work_Sans',
+              weight: FontWeight.w600,
+              size: 16
+          ),
           width: 326,
           onTap: () {
             loginUsers();

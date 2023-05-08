@@ -227,7 +227,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         16.height,
         Container(
-          height: 48,
+          //height: 48,
           width: 326,
           child: AppTextField(
             textFieldType: TextFieldType.USERNAME,
@@ -238,15 +238,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             decoration: inputDecoration(
                 context,
                 hint: context.translate.lblDesignation,
+                prefixIcon: Image.asset('assets/icons/frame.png',width: 24,height: 24,color:Color(0xFF1F2224) ,),
 
               ),
-            suffix: profile.iconImage(size: 10).paddingAll(14),
+
 
           ),
         ),
         16.height,
         Container(
-          height: 48,
+          //height: 48,
           width: 326,
           child: DropdownButtonFormField<String>(
             items: [
@@ -305,6 +306,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             decoration: inputDecoration(
                 context,
                 hint: context.translate.hintPassword,
+                prefixIcon: Image.asset('assets/icons/Lock_icon.png', color: Color(0xFF1F2224)),
 
             ),
             onFieldSubmitted: (s) {
@@ -320,10 +322,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
         8.height,
         Container(
           child: AppButton(
-            text: context.translate.lblsignup,
+            text: 'SIGNUP',
             height: 40,
             color: primaryColor,
-            textStyle: primaryTextStyle(color: white),
+            textStyle: primaryTextStyle(
+                color: white,
+                fontFamily: 'trueno',
+                size: 16,
+                weight:FontWeight.w600,
+
+            ),
             width: context.width() - context.navigationBarHeight,
             onTap: () {
               saveUser();
