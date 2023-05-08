@@ -110,7 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       children: [
         Container(
 
-          height: 48,
+          //height: 48,
           width: 326,
           child: AppTextField(
             textFieldType: TextFieldType.NAME,
@@ -118,18 +118,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             focus: fNameFocus,
             nextFocus: lNameFocus,
             errorThisFieldRequired: context.translate.hintRequired,
-            decoration: inputDecoration(context, hint: context.translate.hintFirstNm),
-            suffix: Image(
-              image: AssetImage('assets/icons/frame.png'),
-              width: 10,
-              height: 10,
-              color: Colors.black,
-            ).paddingAll(14),
+            decoration: inputDecoration(
+              context,
+              hint: context.translate.hintFirstNm,
+              prefixIcon: Image.asset('assets/icons/frame.png',color:Color(0xFF1F2224),width: 24,height: 24),
+
+            ),
+
           ),
         ),
         16.height,
         Container(
-          height: 48,
+          //height: 48,
           width: 326,
           child: AppTextField(
             textFieldType: TextFieldType.NAME,
@@ -137,18 +137,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             focus: lNameFocus,
             nextFocus: userNameFocus,
             errorThisFieldRequired: context.translate.hintRequired,
-            decoration: inputDecoration(context, hint: context.translate.hintLastNm),
-            suffix: Image(
-              image: AssetImage('assets/icons/frame.png'),
-              width: 10,
-              height: 10,
-              color: Colors.black,
-            ).paddingAll(14),
+            decoration: inputDecoration(
+                context,
+                hint: context.translate.hintLastNm,
+                prefixIcon: Image.asset('assets/icons/frame.png',color:Color(0xFF1F2224),width: 24,height: 24,),
+
+            ),
+
           ),
         ),
         16.height,
         Container(
-          height: 48,
+          //height: 48,
           width: 326,
           child: AppTextField(
             textFieldType: TextFieldType.USERNAME,
@@ -156,18 +156,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             focus: userNameFocus,
             nextFocus: emailFocus,
             errorThisFieldRequired: context.translate.hintRequired,
-            decoration: inputDecoration(context, hint: context.translate.hintUserNm),
-            suffix: Image(
-              image: AssetImage('assets/icons/frame.png'),
-              width: 10,
-              height: 10,
-              color: Colors.black,
-            ).paddingAll(14),
+            decoration: inputDecoration(
+                context,
+                hint: context.translate.hintUserNm,
+                prefixIcon: Image.asset('assets/icons/frame.png',color:Color(0xFF1F2224),width: 24,height: 24,),
+
+            ),
+
           ),
         ),
         16.height,
         Container(
-          height: 48,
+          //height: 48,
           width: 326,
           child: AppTextField(
             textFieldType: TextFieldType.EMAIL,
@@ -175,17 +175,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
             focus: emailFocus,
             nextFocus: mobileFocus,
             errorThisFieldRequired: context.translate.hintRequired,
-            decoration: inputDecoration(context, hint: context.translate.hintEmailAddress),
-            suffix: Icon(
-              Icons.email,
-              size: 15,
-              color: Colors.black,
-            ).paddingAll(14),
+            decoration: inputDecoration(
+                context,
+                hint: context.translate.hintEmailAddress,
+
+                prefixIcon: Icon(
+                  Icons.email,
+                  size: 22,
+                  color:Color(0xFF1F2224),
+                )
+
+            ),
+            
           ),
         ),
         16.height,
         Container(
-          height: 48,
+          //height: 48,
           width: 326,
           child: AppTextField(
             textFieldType: TextFieldType.PHONE,
@@ -197,12 +203,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             },
             nextFocus: designationFocus,
             errorThisFieldRequired: context.translate.hintRequired,
-            decoration: inputDecoration(context, hint: context.translate.hintContactNumber),
-            suffix:  Icon(
-              Icons.phone_in_talk,
-              size: 16,
-              color: Colors.black,
-            ).paddingAll(14),
+            decoration: inputDecoration(
+                context,
+                hint: context.translate.hintContactNumber,
+                prefixIcon:Image.asset('assets/icons/phone_icon_new.png',width: 24,height: 24,color:Color(0xFF1F2224) ,),
+
+            ),
+
             validator: (mobileCont) {
               if (mobileCont!.isEmpty) return context.translate.lblPleaseEnterMobileNumber;
               if (!mobileCont.trim().contains('-')) return '"-" required after country code';
@@ -228,8 +235,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             isValidationRequired: false,
             focus: designationFocus,
             nextFocus: passwordFocus,
-            decoration: inputDecoration(context, hint: context.translate.lblDesignation),
+            decoration: inputDecoration(
+                context,
+                hint: context.translate.lblDesignation,
+
+              ),
             suffix: profile.iconImage(size: 10).paddingAll(14),
+
           ),
         ),
         16.height,
@@ -249,7 +261,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ],
             focusNode: userTypeFocus,
             dropdownColor: context.cardColor,
-            decoration: inputDecoration(context, hint: context.translate.lblUserType),
+            decoration: inputDecoration(
+                context,
+                hint: context.translate.lblUserType,
+
+            ),
             value: selectedUserTypeValue,
             validator: (value) {
               if (value == null) return errorThisFieldRequired;
@@ -264,7 +280,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         16.height,
         Container(
-          height: 48,
+
           width: 326,
           child: DropdownUserTypeComponent(
             isValidate: true,
@@ -277,7 +293,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         16.height,
         Container(
-          height: 48,
+
           width: 326,
           child: AppTextField(
             textFieldType: TextFieldType.PASSWORD,
@@ -286,7 +302,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             suffixPasswordVisibleWidget: ic_show.iconImage(size: 10).paddingAll(14),
             suffixPasswordInvisibleWidget: ic_hide.iconImage(size: 10).paddingAll(14),
             errorThisFieldRequired: context.translate.hintRequired,
-            decoration: inputDecoration(context, hint: context.translate.hintPassword),
+            decoration: inputDecoration(
+                context,
+                hint: context.translate.hintPassword,
+
+            ),
             onFieldSubmitted: (s) {
               saveUser();
             },

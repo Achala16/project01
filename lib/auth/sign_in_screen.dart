@@ -110,7 +110,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   focus: emailFocus,
                   nextFocus: passwordFocus,
                   errorThisFieldRequired: context.translate.hintRequired,
-                  decoration: inputDecoration(context, hint: context.translate.hintEmailAddress,prefixIcon:  Icon(Icons.email, color: Colors.black,size: 20,), ),
+                  decoration: inputDecoration(context, hint: context.translate.hintEmailAddress,prefixIcon:  Icon(Icons.email, color:Color(0xFF1F2224) ,size: 20,), ),
                   //suffix: ic_message.iconImage(size: 10).paddingAll(14),
                   autoFillHints: [AutofillHints.email],
                 ),
@@ -145,7 +145,7 @@ class _SignInScreenState extends State<SignInScreen> {
               decoration: inputDecoration(
                 context,
                 hint: context.translate.hintPassword,
-                prefixIcon: Image.asset('assets/icons/Lock_icon.png', color: Colors.black),
+                prefixIcon: Image.asset('assets/icons/Lock_icon.png', color: Color(0xFF1F2224)),
               ),
               autoFillHints: [AutofillHints.password],
               onFieldSubmitted: (s) {
