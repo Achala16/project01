@@ -323,7 +323,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         Container(
           child: AppButton(
             text: 'SIGNUP',
-            height: 40,
+            height: 50,
+            elevation:  0,
             color: primaryColor,
             textStyle: primaryTextStyle(
                 color: white,
@@ -332,7 +333,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 weight:FontWeight.w600,
 
             ),
-            width: context.width() - context.navigationBarHeight,
+            width: 326,
             onTap: () {
               saveUser();
             },
@@ -348,10 +349,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
         16.height,
         RichTextWidget(
           list: [
-            TextSpan(text: "${context.translate.alreadyHaveAccountTxt} ? ", style: secondaryTextStyle()),
+            TextSpan(
+                text: "Already have an account?",
+                style: secondaryTextStyle(
+                  size: 14,
+                  fontFamily: 'trueno',
+                  weight: FontWeight.w400,
+                  color: Color(0xFF1F2224)
+            )),
+
             TextSpan(
               text: context.translate.signIn,
-              style: boldTextStyle(color: primaryColor, size: 14),
+              style: boldTextStyle(
+                  color: primaryColor,
+                  decoration: TextDecoration.underline,
+                  size: 14,
+                  weight: FontWeight.w700,
+                  fontFamily: 'trueno'
+
+              ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   finish(context);
